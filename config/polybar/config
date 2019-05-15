@@ -1,0 +1,314 @@
+;POLYBAR CONFIG!!! 
+;Written from scratch by ryals
+
+[colors]
+fg = #dcd0d9
+bg = #6510151b
+foreground-alt = ${self.fg)
+
+[bar/main]
+monitor = ${env:MONITOR:HDMI-1}
+monitor-fallback = ${env:MONITOR:eDP-1}
+width = 100%
+height = 28
+offset-x = 0%
+offset-y = 0%
+radius = 0
+fixed-center = false
+
+background = ${colors.bg}
+foreground = ${colors.fg}
+
+line-size = 3
+line-color = #f00
+
+border-size = 4
+border-color = ${colors.bg}
+
+padding-left = 0
+padding-right = 2
+
+module-margin-left = 1
+module-margin-right = 2
+
+font-0 = DroidSansMonoNerdFont
+
+modules-left = i3
+modules-center = xwindow
+modules-right = pulseaudio memory cpu wlan battery date menu
+
+tray-position = right
+tray-padding = 2
+
+wm-restack = i3
+[bar/music]
+monitor = ${bar/main.monitor}
+monitor-fallback = ${env:MONITOR:eDP-1}
+bottom=true
+modules-left = 
+modules-center = spotify mpd
+modules-right =
+width = 50%
+height = 28
+offset-x = 25%
+offset-y = 0%
+radius = 0
+fixed-center = false
+
+background = ${colors.bg}
+foreground = ${colors.fg}
+
+line-size = 3
+line-color = #f00
+
+border-size = 4
+border-color = #00000000
+
+padding-left = 0
+padding-right = 2
+tray_position = center
+module-margin-left = 1
+module-margin-right = 2
+
+font-0 = DroidSansMonoNerdFont
+
+
+
+[module/xwindow]
+type = internal/xwindow
+label = %title:0:30:...% 
+
+[module/bspwm]
+type = internal/bspwm
+
+label-focused = %index%
+label-focused-background = ${colors.bg}
+label-focused-underline= #B6827A
+label-focused-padding = 2
+
+label-occupied = %index%
+label-occupied-padding = 2
+
+label-urgent = %index%!
+label-urgent-background = #B6827A
+label-urgent-padding = 2
+
+label-empty = %index%
+label-empty-foreground = ${colors.foreground-alt}
+label-empty-padding = 2
+
+; Separator in between workspaces
+; label-separator = |
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+index-sort = true
+wrapping-scroll = false
+
+; Only show workspaces on the same output as the bar
+;pin-workspaces = true
+
+label-mode-padding = 2
+label-mode-foreground = ${colors.fg}
+label-mode-background = ${colors.bg}
+ws-icon-0 = 1;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
+ws-icon-3 = 4;
+ws-icon-4 = 5;5
+ws-icon-5 = 6;6
+ws-icon-6 = 7;7
+ws-icon-7 = 8;8
+ws-icon-8 = 9;9
+ws-icon-9 = 10;
+ws-icon-default = %index%
+; focused = Active workspace on focused monitor
+label-focused = %icon%
+label-focused-background = ${module/bspwm.label-focused-background}
+label-focused-underline = ${module/bspwm.label-focused-underline}
+label-focused-padding = ${module/bspwm.label-focused-padding}
+
+; unfocused = Inactive workspace on any monitor
+label-unfocused = %icon%
+label-unfocused-padding = ${module/bspwm.label-occupied-padding}
+
+; visible = Active workspace on unfocused monitor
+label-visible = %icon%
+label-visible-background = ${self.label-focused-background}
+label-visible-underline = ${self.label-focused-underline}
+label-visible-padding = ${self.label-focused-padding}
+
+; urgent = Workspace with urgency hint set
+label-urgent = %icon%
+label-urgent-background = ${module/bspwm.label-urgent-background}
+label-urgent-padding = ${module/bspwm.label-urgent-padding}
+
+; Separator in between workspaces
+; label-separator = |
+
+[module/mpd]
+type = internal/mpd
+format-online = <toggle> <label-song>  
+host = 127.0.0.1
+port = 8008
+icon-prev = 
+icon-stop = 
+icon-play = 
+icon-pause = 
+icon-next = 
+
+label-song-maxlen = 30
+label-song-ellipsis = true
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = " "
+format-prefix-foreground = ${colors.fg}            
+;format-underline = #386EA8
+label = %percentage%%
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = " "
+format-prefix-foreground = ${colors.foreground-alt}
+;format-underline = #6891C9
+label = %percentage_used%%
+
+[module/wlan]
+type = internal/network
+interface = wlp2s0
+interval = 3.0
+
+format-connected = <label-connected>
+;format-connected-underline = #5D84BC
+label-connected =  %essid%
+click-left = rowifi
+
+format-disconnected = <label-disconnected>
+;format-disconnected-underline = ${self.format-connected-underline}
+label-disconnected = %ifname% DOWN
+;label-disconnected-foreground = ${colors.foreground-alt}
+
+[module/date]
+type = internal/date
+interval = 5
+
+date =
+date-alt = " %Y-%m-%d"
+
+time = %H:%M
+time-alt = %H:%M:%S
+
+format-prefix =  
+format-prefix-foreground = ${colors.fg}
+;format-underline = #386EA8
+
+label = %date% %time%
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+format-volume = <label-volume> <bar-volume>
+label-volume = 
+label-volume-foreground = ${root.foreground}
+
+format-muted-prefix = " "
+format-muted-foreground = ${colors.foreground-alt}
+label-muted = sound muted
+
+bar-volume-width = 10
+bar-volume-foreground-0 = #D6A395
+bar-volume-foreground-1 = #D6A395
+bar-volume-foreground-2 = #D6A395
+bar-volume-foreground-3 = #D6A395 
+bar-volume-foreground-4 = #D6A395
+bar-volume-foreground-5 = #D6A395
+bar-volume-foreground-6 = #D6A395
+bar-volume-gradient = false
+bar-volume-indicator = |
+bar-volume-indicator-font = 1
+bar-volume-fill = =
+bar-volume-fill-font = 1
+bar-volume-empty = =
+bar-volume-empty-font = 1
+bar-volume-empty-foreground = ${colors.fg}
+
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = AC
+full-at = 100
+
+format-charging = <animation-charging> <label-charging>
+;format-charging-underline = #9FA9D4
+
+format-discharging = <animation-discharging> <label-discharging>
+;format-discharging-underline = ${self.format-charging-underline}
+
+format-full-prefix = "FULL"
+format-full-prefix-foreground = ${colors.foreground-alt}
+;format-full-underline = ${self.format-charging-underline}
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-foreground = ${colors.foreground-alt}
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-foreground = ${colors.foreground-alt}
+animation-charging-framerate = 650
+
+animation-discharging-0 = 
+animation-discharging-1 = 
+animation-discharging-2 = 
+animation-discharging-3 = 
+animation-discharging-foreground = ${colors.foreground-alt}
+animation-discharging-framerate = 450
+
+[module/menu]
+type=custom/menu
+expand-right = true
+
+label-open = 
+label-close = ${self.label-open}
+label-separator = |
+menu-0-0 =  
+menu-0-0-exec = shutdown -P now
+menu-0-1 = 
+menu-0-1-exec = mlock
+menu-0-2 = 
+menu-0-2-exec = scrot
+menu-0-3 = 
+menu-0-3-exec = rowifi
+menu-0-4 =  
+menu-0-4-exec = spotify >1&
+menu-0-5 = 
+menu-0-5-exec = dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Previous
+menu-0-6 = |
+menu-0-6-exec = dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.PlayPause
+menu-0-7 = 
+menu-0-7-exec = dbus-send --print-reply --dest=org.mpris.MediaPlayer2.spotify /org/mpris/MediaPlayer2 org.mpris.MediaPlayer2.Player.Next
+
+[module/vpn]
+type = custom/script
+format = <label>
+label = VPN:%output%
+exec = chkvpn
+intreval = 0.5
+click-left = exec pkill openvpn
+click-right = exec openvpn --config ~/.ovpn/*.ovpn --auth-user-pass ~/.ovpn/auth.txt
+;format-underline = #6891C9
+
+[module/spotify]
+type = custom/script
+format = <label>
+label = %output%
+exec = spotify.sh
