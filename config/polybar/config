@@ -10,7 +10,7 @@ foreground-alt = ${self.fg)
 monitor = ${env:MONITOR:HDMI-1}
 monitor-fallback = ${env:MONITOR:eDP-1}
 width = 100%
-height = 28
+height = 30
 offset-x = 0%
 offset-y = 0%
 radius = 0
@@ -34,9 +34,8 @@ module-margin-right = 2
 font-0 = DroidSansMonoNerdFont
 
 modules-left = i3
-modules-center = xwindow
+modules-center =  mpd
 modules-right = pulseaudio memory cpu wlan battery date menu
-
 tray-position = right
 tray-padding = 2
 
@@ -52,9 +51,9 @@ width = 50%
 height = 28
 offset-x = 25%
 offset-y = 0%
-radius = 0
+radius = 10.0
 fixed-center = false
-
+override-redirect = true
 background = ${colors.bg}
 foreground = ${colors.fg}
 
@@ -83,7 +82,7 @@ type = internal/bspwm
 
 label-focused = %index%
 label-focused-background = ${colors.bg}
-label-focused-underline= #B6827A
+label-focused-underline= ${xrdb:color2}
 label-focused-padding = 2
 
 label-occupied = %index%
@@ -113,8 +112,8 @@ label-mode-padding = 2
 label-mode-foreground = ${colors.fg}
 label-mode-background = ${colors.bg}
 ws-icon-0 = 1;
-ws-icon-1 = 2;
-ws-icon-2 = 3;
+ws-icon-1 = 2;
+ws-icon-2 = 3;
 ws-icon-3 = 4;
 ws-icon-4 = 5;5
 ws-icon-5 = 6;6
@@ -210,29 +209,32 @@ label = %date% %time%
 
 [module/pulseaudio]
 type = internal/pulseaudio
-
 format-volume = <label-volume> <bar-volume>
-label-volume = 
-label-volume-foreground = ${root.foreground}
-
+;format-volume-prefix = %{F#43bc52 B-}%{R F-}%{R B#3e8747}
+;format-volume-prefix-foreground = ${colors.fg}
+;format-volume-suffix = 
+;format-volume-suffix-foreground = #3e8747
+;format-volume-suffix-background = ${colors.bg}
+label-volume = VOL: %percentage%% 
+;label-volume-foreground = ${colors.bg}
 format-muted-prefix = " "
-format-muted-foreground = ${colors.foreground-alt}
+format-muted-foreground = ${colors.fg}
 label-muted = sound muted
 
 bar-volume-width = 10
-bar-volume-foreground-0 = #D6A395
-bar-volume-foreground-1 = #D6A395
-bar-volume-foreground-2 = #D6A395
-bar-volume-foreground-3 = #D6A395 
-bar-volume-foreground-4 = #D6A395
-bar-volume-foreground-5 = #D6A395
-bar-volume-foreground-6 = #D6A395
+bar-volume-foreground-0 = ${xrdb:color2}
+bar-volume-foreground-1 = ${xrdb:color2}
+bar-volume-foreground-2 = ${xrdb:color2}
+bar-volume-foreground-3 = ${xrdb:color2}
+bar-volume-foreground-4 = ${xrdb:color2}
+bar-volume-foreground-5 = ${xrdb:color2}
+bar-volume-foreground-6 = ${xrdb:color2}
 bar-volume-gradient = false
 bar-volume-indicator = |
 bar-volume-indicator-font = 1
-bar-volume-fill = =
+bar-volume-fill = -
 bar-volume-fill-font = 1
-bar-volume-empty = =
+bar-volume-empty = -
 bar-volume-empty-font = 1
 bar-volume-empty-foreground = ${colors.fg}
 
