@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+## Author : Aditya Shakya (adi1090x)
+## Mail : adi1090x@gmail.com
+## Github : @adi1090x
+## Reddit : @adi1090x
+
+rofi_command="rofi -theme themes/powermenu.rasi"
+uptime=$(uptime -p | sed -e 's/up //g')
+
+# Options
+shutdown=""
+reboot=""
+lock=""
+suspend="⏾"
+apps=""
+
+# Variable passed to rofi
+options="$shutdown\n$reboot\n$lock\n$suspend\n$apps"
+
+chosen="$(echo -e "$options" | $rofi_command -p "UP - $uptime" -dmenu -selected-row 2)"
+case $chosen in
+    $shutdown)
+        systemctl poweroff
+        ;;
+    $reboot)
+        systemctl reboot
+        ;;
+    $lock)
+        mlock
+        ;;
+    $suspend)
+        mpc -q pause
+        amixer set Master mute
+        systemctl suspend
+        ;;
+	$apps)
+		~/.config/rofi/bin/apps.sh
+		;;
+esac
+

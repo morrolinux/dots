@@ -1,0 +1,146 @@
+/*
+ *
+ * Author : Aditya Shakya (adi1090x)
+ * Mail : adi1090x@gmail.com
+ * Github : @adi1090x
+ * Reddit : @adi1090x
+ *
+ */
+
+@import "colors.rasi"
+
+/* ########### */
+
+* {{
+  /* General */
+  text-font:                            "Droid Sans Mono Nerd Font 12";
+  icon-font:                            "Droid Sans Mono Nerd Font 32";
+  icon-font-small:                      "Droid Sans Mono Nerd Font 24";
+
+  option-6-listview-spacing:            10px;
+
+  menu-window-padding:                   5px 15px;
+  menu-inputbar-margin:                  10px 0px;
+  menu-prompt-padding:                   10px 20px 10px 20px;
+  menu-prompt-margin:                    0px 0px 0px -2px;
+  menu-element-border:                   10px;
+  menu-element-padding:                  3px 8px -1px -40px;
+}}
+
+/* ########### */
+
+#window {{
+  width: 29%;
+  height: 20%;
+}}
+
+/* ########### */
+
+* {{
+  background-color: @background;
+  text-color: @foreground;
+  font: @icon-font;
+}}
+
+#horibox {{
+  children: [ listview ];
+}}
+#listview {{
+  layout: horizontal;
+}}
+#element {{
+  padding: @option-element-padding;
+  background-color: @background-light;
+}}
+#element.selected {{
+  background-color: @accent;
+  text-color: @background;
+}}
+
+/* ########### */
+
+* {{
+  font: @text-font;
+}}
+#window {{
+  padding: @menu-window-padding;
+  children: [ inputbar, horibox ];
+}}
+#inputbar {{
+  children: [ textbox-prompt-colon, prompt ];
+  margin: @menu-inputbar-margin;
+}}
+prompt,
+textbox-prompt-colon {{
+  padding: @menu-prompt-padding;
+  border: 2px;
+  border-color: @accent;
+}}
+#prompt {{
+  margin: @menu-prompt-margin;
+  background-color: @background-light;
+  text-color: @accent;
+}}
+#textbox-prompt-colon {{
+  expand: false;
+  str: "System";
+  background-color: @accent;
+  text-color: @background;
+}}
+#horibox {{
+  padding: 0px;
+}}
+#listview {{
+  spacing: @option-6-listview-spacing;
+  lines: 5;
+}}
+#element {{
+  font: @icon-font;
+  border: @menu-element-border;
+  padding: @menu-element-padding;
+  border-color: @background-light;
+}}
+#element.selected {{
+  border-color: @accent;
+}}
+element.active,
+element.selected.urgent {{
+  background-color: @on;
+  text-color: @background;
+  border-color: @on;
+}}
+element.selected.urgent {{
+  border-color: @accent;
+}}
+element.urgent,
+element.selected.active {{
+  background-color: @off;
+  text-color: @background;
+  border-color: @off;
+}}
+element.selected.active {{
+  border-color: @accent;
+}}
+
+/*
+ * Change the colorscheme for every menu simply by editing this file...
+ *
+ * Available Color Schemes
+ * // Dark
+ * material-dark/amber			material-dark/blue		material-dark/blue_grey		material-dark/brown		material-dark/cyan			material-dark/deep_orange
+ * material-dark/deep_purple	material-dark/green		material-dark/grey			material-dark/indigo	material-dark/light_blue	material-dark/light_green
+ * material-dark/lime			material-dark/orange	material-dark/pink			material-dark/purple	material-dark/red			material-dark/teal
+ * material-dark/yellow
+ * // Light
+ * material-light/amber			material-light/blue			material-light/blue_grey		material-light/brown		material-light/cyan			material-light/deep_orange
+ * material-light/deep_purple	material-light/green		material-light/grey				material-light/indigo		material-light/light_blue	material-light/light_green
+ * material-light/lime			material-light/orange		material-light/pink				material-light/purple		material-light/red			material-light/teal
+ * material-light/yellow
+ *
+ * // Other
+ * adapta, adapta-nokto, arc, arc-dark, adwaita, gruvbox, dark
+ * armchair, darkpink, fresh, inside, party, sirin
+ *
+ */
+
+@import "colorschemes/dark.rasi"
